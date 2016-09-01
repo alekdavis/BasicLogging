@@ -9,6 +9,7 @@
 # Build results
 [Dd]ebug/
 [Rr]elease/
+<<<<<<< HEAD
 #[Bbin]/[Rr]elease/*
 x64/
 build/
@@ -18,6 +19,11 @@ build/
 #![Bb]in/[Rr]elease/Mailr.dll
 #![Bb]in/[Rr]elease/MailrCmd.exe
 
+=======
+build/
+[Oo]bj/
+
+>>>>>>> efe88e3127cb27a3661d6bd4f8e4b648fc35166b
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
 
@@ -166,3 +172,8 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+<<<<<<< HEAD
+=======
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help
+>>>>>>> efe88e3127cb27a3661d6bd4f8e4b648fc35166b
