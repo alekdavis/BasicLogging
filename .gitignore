@@ -19,6 +19,9 @@ build/
 #![Bb]in/[Rr]elease/Mailr.dll
 #![Bb]in/[Rr]elease/MailrCmd.exe
 
+# NuGet publishing files.
+*.nupkg
+
 =======
 build/
 [Oo]bj/
