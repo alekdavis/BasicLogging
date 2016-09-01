@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BasicLogging Class Library")]
-[assembly: AssemblyDescription("Simple log wrapper for Log4Net (and possibly other logging libraries).")]
+[assembly: AssemblyTitle("BasicLogging.NET Class Library")]
+[assembly: AssemblyDescription("Simple log wrapper for log4net (and possibly other logging libraries).")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alek Davis")]
 [assembly: AssemblyProduct("BasicLogging")]
