@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topic id="f0cc3a48-77b2-4d84-960f-4e74e59ef640" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+
+			<para>
+				<token>PRODUCTNAME</token> 
+				is a simple .NET wrapper that makes it a bit easier
+				to add logging to your application.
+				Currently, it is built on top of the popular
+				<externalLink>
+					<linkText>log4net</linkText>
+					<linkUri>https://logging.apache.org/log4net/</linkUri>
+				</externalLink>
+				framework, but it can be extended to
+				support other frameworks, such as
+				<externalLink>
+					<linkText>nLog</linkText>
+					<linkUri>http://nlog-project.org/</linkUri>
+				</externalLink>.
+			</para>
+		</introduction>
+
+		<section>
+			<title>Why use <token>PRODUCTNAME</token>?</title>
+			<content>
+				<para>
+					TBD
+				</para>
+			</content>
+		</section>
+
+		<relatedTopics>
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>
