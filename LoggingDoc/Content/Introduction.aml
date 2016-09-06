@@ -15,7 +15,7 @@
 				framework, but it can be extended to
 				support other frameworks, such as
 				<externalLink>
-					<linkText>nLog</linkText>
+					<linkText>NLog</linkText>
 					<linkUri>http://nlog-project.org/</linkUri>
 				</externalLink>.
 			</para>
