@@ -8,28 +8,44 @@ using System.Threading.Tasks;
 namespace BasicLogging
 {
 	/// <summary>
-	/// Implements a log factory generating a logger instance.
+	/// Implements a log factory responsible for generating a logger instance.
 	/// </summary>
 	public static class LogManager
 	{
-		// Internal error messages.
-		private static readonly string _ERRMSG_UNSUPPORTED_PROVIDER =
-			"Logging provider '{0}' is currently not supported.";
+		/// <summary>
+		/// The default logging provider.
+		/// </summary>
+		private static LogProvider _defaultProvider = LogProvider.Log4Net;
 
 		/// <summary>
-		/// Logging provider.
+		/// Gets or sets the default logging provider.
 		/// </summary>
 		/// <remarks>
-		/// Only <c>Log4Net</c> is supported at this time.
+		/// Only <c>log4net</c> is supported at this time.
 		/// </remarks>
-		public static LogProvider Provider = LogProvider.Log4Net;
+		public static LogProvider DefaultProvider 
+		{
+			get
+			{
+				return _defaultProvider;
+			}
+
+			set
+			{
+				_defaultProvider = value;
+			}
+		}
 
 		/// <overloads>
 		/// Generates a logger instance.
 		/// </overloads>
 		/// <summary>
-		/// Returns the logger of the specified type.
+		/// Returns a logger instance of the specified logging provider 
+		/// matching a given name.
 		/// </summary>
+		/// <param name="provider">
+		/// Name of the logging provider.
+		/// </param>
 		/// <param name="name">
 		/// Logger name.
 		/// When not specified, the full name of the caller class will be
@@ -45,44 +61,75 @@ namespace BasicLogging
 		/// </remarks>
 		public static ILogger GetLogger
 		(
+			LogProvider provider,
 			string name = null
 		)
         {
-			VerifyProvider();
-
 			if (String.IsNullOrEmpty(name))
-				return GetLogger((new StackFrame(1)).GetMethod().DeclaringType);
+				return GetLogger(provider, (new StackFrame(1)).GetMethod().DeclaringType);
 
-            return new Log4NetWrapper(name);
+			switch (provider)
+			{
+				case LogProvider.Log4Net:
+					return new Log4NetWrapper(name);
+			}
+
+			return null;
         }
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="GetLogger(string)" select="summary|param|returns|remarks"/> 
+		/// <inheritdoc cref="GetLogger(LogProvider,string)" select="param|returns|remarks"/> 
+		/// <summary>
+		/// Returns a logger instance of the default logging provider 
+		/// matching a given name.
+		/// </summary>		
+		public static ILogger GetLogger
+		(
+			string name = null
+		)
+		{
+			return GetLogger(DefaultProvider, name);
+		}
+		#pragma warning restore 1573
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="GetLogger(LogProvider,string)" select="param|returns|remarks"/> 
+		/// <summary>
+		/// Returns a logger instance of the specified logging provider 
+		/// matching a given type.
+		/// </summary>
 		/// <param name="type">
 		/// Logger type.
-		/// </param>		
-		#pragma warning restore 1573
+		/// </param>
         public static ILogger GetLogger
+		(
+			LogProvider provider,
+			Type type
+		)
+        {
+			switch (provider)
+			{
+				case LogProvider.Log4Net:
+					return new Log4NetWrapper(type);
+			}
+
+			return null;
+        }
+		#pragma warning restore 1573
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="GetLogger(LogProvider,Type)" select="param|returns|remarks"/> 
+		/// <summary>
+		/// Returns a logger instance of the default logging provider 
+		/// matching a given type.
+		/// </summary>		
+		public static ILogger GetLogger
 		(
 			Type type
 		)
         {
-			VerifyProvider();
-
-			return new Log4NetWrapper(type);
-        }
-
-		/// <summary>
-		/// Checks if the logging provider is supported.
-		/// </summary>
-		/// <exception cref="System.Exception">
-		/// The specified provider is not supported.
-		/// </exception>
-		private static void VerifyProvider()
-		{
-			if (Provider != LogProvider.Log4Net)
-				throw new Exception(
-					String.Format(_ERRMSG_UNSUPPORTED_PROVIDER, Provider));
+			return GetLogger(DefaultProvider, type);
 		}
+		#pragma warning restore 1573
 	}
 }

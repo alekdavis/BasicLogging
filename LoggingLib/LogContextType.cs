@@ -32,7 +32,7 @@ namespace BasicLogging
 		/// Accessible from the primary thread and all child threads.
 		/// </summary>
 		/// <remarks>
-		/// Because other thread can modify these properties
+		/// Because other threads can modify these properties
 		/// before they get written to a log,
 		/// this context is best suited for properties
 		/// that do not change within the execution scope.

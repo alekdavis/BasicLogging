@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f1f4cd46-0e88-4f93-ac72-d53425e2b411" revisionNumber="1">
+  <developerSampleDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!--
+    <summary>
+      <para>Optional summary abstract</para>
+    </summary>
+    -->
+
+    <introduction>
+      <!-- Uncomment this to generate an outline of the section and sub-section
+           titles.  Specify a numeric value as the inner text to limit it to
+           a specific number of sub-topics when creating the outline.  Specify
+           zero (0) to limit it to top-level sections only.  -->
+      <!-- <autoOutline /> -->
+
+      <para>
+			The following example illustrates the use of <token>PRODUCTNAME</token>.
+			</para>
+    </introduction>
+
+    <!-- <procedure>Optional procedures.  See How To document for procedure layout example.</procedure> -->
+    <!-- <requirements>Optional requirements section</requirements> -->
+    <!-- <demonstrates>Optional info about what is demonstrated</demonstrates> -->
+    <!-- <codeExample>Optional code example</codeExample> -->
+
+    <!-- Add one or more top-level section elements.  These are collapsible.
+         If using <autoOutline />, add an address attribute to identify it
+         and specify a title so that it can be jumped to with a hyperlink. -->
+		<section address="Sample">
+			<title>Example</title>
+			<content>
+				<para>
+					The following example illustrates the basic use of <token>PRODUCTNAME</token>.
+				</para>
+				<para>
+					Assume that we have an MVC application that, in addition to standard info
+					(timestamp, thread ID, message, etc), must write the following to the logs:
+				</para>
+				<list class="bullet">
+					<listItem>
+						transaction ID
+					</listItem>
+					<listItem>
+						endpoint
+					</listItem>
+					<listItem>
+						operation
+					</listItem>
+					<listItem>
+						method
+					</listItem>
+					<listItem>
+						client ID
+					</listItem>
+					<listItem>
+						IP address (of the caller)
+					</listItem>
+				</list>
+				<para>
+					<legacyItalic>Transaction ID</legacyItalic> will be used to identify everything
+					that happens during the invocation of the primary controller 
+					<legacyItalic>operation</legacyItalic> (the topmost method, such as Post),
+					including other called methods (name of each immediate <legacyItalic>method</legacyItalic>
+					writing to the log will also be captured).
+					In addition, a log record will include an <legacyItalic>IP address</legacyItalic>
+					of the caller and a <legacyItalic>client ID</legacyItalic>.			
+				</para>
+
+				<para>
+					The log4net configuration in the web.config file may look like this (in the following 
+					example only log4net settings are shown):
+				</para>
+				<code language="xml">
+					<![CDATA[
+					<configuration>
+						<configSections>
+							<section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a" />
+						</configSections>
+						...
+						<log4net>
+						...
+						<appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+							<file value="c:\Logs\MyWebApp\MyWebApp.log" />
+							<appendToFile value="true" />
+							<rollingStyle value="composite" />
+							<staticLogFileName value="true" />
+							<maxSizeRollBackups value="100" />
+							<maximumFileSize value="20MB" />
+							<datePattern value=".yyyy-MM-dd" />
+							<countDirection value="1" />
+							<layout type="log4net.Layout.PatternLayout">
+								<conversionPattern value="[%utcdate{ISO8601}] [%thread] [%level] [%property{transaction}] [%property{operation}] [%property{clientIp}] [%property{client}] [%logger{1}] [%property{endpoint}] [%property{callerMemberName}] %message%newline%exception" />
+							</layout>
+						</appender>						
+						</log4net>
+						...
+					</configuration>
+					]]>
+				</code>
+				<para>
+					The following code shows how the application makes calls to write log messages. 
+				</para>
+				<code language="c#">
+					<![CDATA[
+					...
+					using BasicLogging;
+					...
+					namespace BasicLoggingDemo
+					{
+						public class UserController: ApiController
+						{
+							private static ILogger _log = LogManager.GetLogger(typeof(UserController));
+							...
+							public UserInfo Post(UserInfo user)
+							{
+								// In the log4net implementation, TRACE messages are mapped to DEBUG messages.
+								// In addition to the message, the log entry will includ ethe name of this method,
+								// i.e. 'Post'.
+								_log.Write(LogLevel.Trace, "Started.");
+								
+								// The following properties will be set for the dureation of the logical thread.
+								// The will be accessible via the custom properties, e.g. [%property{transaction}].
+								_log.SetContext(LogContextType.LogicalThread, "transaction", Guid.NewGuid());
+								_log.SetContext(LogContextType.LogicalThread, "endpoint", this.GetType());
+								_log.SetContext(LogContextType.LogicalThread, "operation", LogContext.GetMethodName());
+								
+								// Use application-specific methods to get client ID and IP address.
+								_log.SetContext(LogContextType.LogicalThread, "client", AppHelper.GetClientId());
+								_log.SetContext(LogContextType.LogicalThread, "clientIp", AppHelper.GetClientIpAddress());
+								
+								// The following and all subsequent log entries will include transaction ID, 
+								// endpoint name, operation, client ID and IP address.
+								_log.Write(LogLevel.Trace, "Context information is set.");
+								
+								try
+								{
+									_log.Write(LogLevel.Trace, "Calling DoSomething.");
+									...
+									DoSomething(user);
+								}
+								catch (Exception ex)
+								{
+									_log.Write(LogLevel.Error, "Cannot do something.", ex);
+									
+									// Add code to handle exception.
+								}
+								
+								...
+								_log.Write(LogLevel.Trace, "Ended.");
+							}
+							
+							private void DoSomething(UserInfo user)
+							{
+								// The following log entries will include contextual info,
+								// including the name of the operation ('Post'), 
+								// immediate method ('DoSomething'),
+								// endpoint ('BasicLoggingDemo.UserController'),
+								// immediate method ('DoSomething'), transaction ID, client ID 
+								// and IP address, etc.
+								
+								_log.Write(LogLevel.Trace, "Started.");
+								
+								try
+								{
+									...
+									DoSomethingElse();
+									...
+								}
+								catch(Exception ex)
+								{
+									_log.Write(LogLevel.Error, "Cannot do something else.", ex);
+									
+									// Add code to handle exception.
+									
+									throw;
+								}
+								
+								_log.Write(LogLevel.Trace, "Ended.");					
+							}
+						}
+					}
+					]]>
+				</code>
+			</content>
+		</section>
+
+    <relatedTopics>
+			<link xlink:href="f0cc3a48-77b2-4d84-960f-4e74e59ef640" />
+			<codeEntityReference>R:Project_BasicLogging</codeEntityReference>
+			<externalLink>
+				<linkText>BasicLogging.NET NuGet Package</linkText>
+				<linkUri>https://www.nuget.org/packages/BasicLogging/</linkUri>
+			</externalLink>
+    </relatedTopics>
+  </developerSampleDocument>
+</topic>

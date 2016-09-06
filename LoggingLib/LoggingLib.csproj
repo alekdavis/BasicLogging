@@ -48,6 +48,7 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="Log4NetWrapper.cs" />
     <Compile Include="LogContext.cs" />
+    <Compile Include="LogCallerContext.cs" />
     <Compile Include="LogContextType.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />

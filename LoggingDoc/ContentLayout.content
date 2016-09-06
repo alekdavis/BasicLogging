@@ -2,8 +2,16 @@
 <Topics>
   <Topic id="f0cc3a48-77b2-4d84-960f-4e74e59ef640" visible="True" isDefault="true" isSelected="true" apiParentMode="InsertAfter" title="Introduction">
     <HelpKeywords>
-      <HelpKeyword index="K" term="Welcome" />
-      <HelpKeyword index="K" term="Introduction" />
+      <HelpKeyword index="K" term="welcome" />
+      <HelpKeyword index="K" term="introduction" />
+      <HelpKeyword index="K" term="FAQs" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="f1f4cd46-0e88-4f93-ac72-d53425e2b411" visible="True" title="Example">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="sample" />
+      <HelpKeyword index="K" term="example" />
+      <HelpKeyword index="K" term="code" />
     </HelpKeywords>
   </Topic>
 </Topics>

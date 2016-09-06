@@ -40,12 +40,12 @@
     <NamespaceGrouping>True</NamespaceGrouping>
     <SyntaxFilters>C#</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
-    <RootNamespaceTitle>API</RootNamespaceTitle>
+    <RootNamespaceTitle>Class Library</RootNamespaceTitle>
     <RootNamespaceContainer>True</RootNamespaceContainer>
     <PresentationStyle>VS2010</PresentationStyle>
     <Preliminary>False</Preliminary>
     <NamingMethod>Guid</NamingMethod>
-    <HelpTitle>BasicLogging User&amp;#39%3bs Guide</HelpTitle>
+    <HelpTitle>BasicLogging.NET User&amp;#39%3bs Guide</HelpTitle>
     <FeedbackEMailLinkText>Alek Davis</FeedbackEMailLinkText>
     <FeedbackEMailAddress>alek.davis%40gmail.com</FeedbackEMailAddress>
     <CopyrightText>Copyright \xA9 2016 Alek Davis</CopyrightText>
@@ -154,6 +154,7 @@
     <Folder Include="Media" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Example.aml" />
     <None Include="Content\Introduction.aml" />
   </ItemGroup>
   <ItemGroup>

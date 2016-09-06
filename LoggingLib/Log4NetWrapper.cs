@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
@@ -13,21 +14,56 @@ using log4net.Config;
 namespace BasicLogging
 {
 	/// <summary>
-	/// Implements logging using log4net.
+	/// Implements logging using <see href="https://logging.apache.org/log4net/">log4net</see>.
 	/// </summary>
 	/// <remarks>
+	/// <para>
 	/// This class must be <c>sealed</c> because
 	/// some methods automatically get (and use) the 
 	/// information about the caller (such as method,
 	/// source file, line of code), so a derived class
 	/// would produce the wrong information.
+	/// </para>
+	/// <para>
+	/// For security reasons, the default implementation only captures 
+	/// the caller file name, not the full path,
+	/// as part of the caller context info.
+	/// To capture full name or make other customizations of the
+	/// caller context configuration,
+	/// set proper <see cref="CallerContext"/>
+	/// flags. 
+	/// </para>
 	/// </remarks>
 	public sealed class Log4NetWrapper: ILogger
 	{	
 		/// <summary>
 		/// Logger instance.
 		/// </summary>
-        private readonly log4net.ILog _log;
+        private log4net.ILog _log = null;
+
+		/// <summary>
+		/// Caller context to be implicitly captured.
+		/// </summary>
+		private LogCallerContext _callerContext = 
+			LogCallerContext.LineNumber | 
+			LogCallerContext.MethodName | 
+			LogCallerContext.SourceFileName;
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="BasicLogging.ILogger.CallerContext" select="summary|value"/> 
+		#pragma warning restore 1573
+		public LogCallerContext CallerContext 
+		{  
+			get 
+			{
+				return _callerContext;
+			}
+			
+			set
+			{
+				_callerContext = value;
+			}
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the 
@@ -117,9 +153,21 @@ namespace BasicLogging
 			string	callerLineNumber
 		)
 		{
-			log4net.ThreadContext.Properties["callerMemberName"]	= callerMemberName;
-			log4net.ThreadContext.Properties["callerFilePath"]		= callerFilePath;
-			log4net.ThreadContext.Properties["callerLineNumber"]	= callerLineNumber;
+			if (_callerContext.HasFlag(LogCallerContext.MethodName))
+				log4net.ThreadContext.Properties["callerMemberName"] = callerMemberName;
+
+			if (_callerContext.HasFlag(LogCallerContext.LineNumber))
+				log4net.ThreadContext.Properties["callerLineNumber"] = callerLineNumber;
+
+			if (_callerContext.HasFlag(LogCallerContext.SourceFilePath))
+				log4net.ThreadContext.Properties["callerFilePath"] = callerFilePath;
+			else if (_callerContext.HasFlag(LogCallerContext.SourceFileName))
+			{
+				log4net.ThreadContext.Properties["callerFilePath"] = 
+					String.IsNullOrEmpty(callerFilePath) ? 
+						callerFilePath : 
+						Path.GetFileName(callerFilePath);
+			}
 		}
 
 		#pragma warning disable 1573

@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release.</releaseNotes>
-	<projectUrl>https://github.com/alekdavis/BasicLogging</projectUrl>
+		<projectUrl>https://github.com/alekdavis/BasicLogging</projectUrl>
     <copyright>Copyright (C) 2016 Alek Davis</copyright>
     <tags>logging log4net</tags>
   </metadata>
