@@ -72,7 +72,7 @@
 			</content>
 		</section>
 
-		<section address="Log4NetDiff">
+		<section address="Log4NetFormat">
 			<title>Why doesn't <token>PRODUCTNAME</token> support log4net's format messages, like DebugFormat?</title>
 			<content>
 				<para>
@@ -98,6 +98,19 @@
 			</content>
 		</section>
 
+		<section address="NuGet">
+			<title>Where is the BasicLogging.NET NuGet package?</title>
+			<content>
+				<para>
+				Here is is:
+				<externalLink>
+					<linkText>https://www.nuget.org/packages/BasicLogging/</linkText>
+					<linkUri>https://www.nuget.org/packages/BasicLogging/</linkUri>
+				</externalLink>				
+				</para>
+			</content>
+		</section>
+		
 		<relatedTopics>
 			<link xlink:href="f1f4cd46-0e88-4f93-ac72-d53425e2b411" />
 			<codeEntityReference>R:Project_BasicLogging</codeEntityReference>
