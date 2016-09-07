@@ -26,11 +26,13 @@ namespace BasicLogging
 		/// <summary>
 		/// Name of the source file writing to the log without the path info
 		/// (obtained from <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>).
+		/// When <see cref="SourceFilePath"/> is set, this flag will be ignored.
 		/// </summary>
 		SourceFileName = 0x4,
 		/// <summary>
 		/// Full path to the source file
 		/// (corresponds to <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>).
+		/// When this flag is set, <see cref="SourceFileName"/> will be ignored.
 		/// </summary>
 		SourceFilePath = 0x8
 	}

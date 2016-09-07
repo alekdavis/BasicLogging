@@ -25,12 +25,14 @@
 			<title>Why use <token>PRODUCTNAME</token>?</title>
 			<content>
 				<para>
-					<token>PRODUCTNAME</token> is very simple to use.
-					It automatically adds default context information (method, line, source file)
+					<token>PRODUCTNAME</token> is lightweight and very simple to use. 
+					It automatically adds default context information (method, line, source file) 
 					to the log records, so you can track them in your log repositories 
-					(you don't have to, though).
-					The library makes it easy to set up other logging context properties that may
-					be needed (such as user, transaction, or session information).
+					(you don't have to, though). 
+					The library makes it easy to set up other logging context properties that 
+					may be needed (such as user, transaction, or session information). 
+					It also implements common sense checks, 
+					such as checking the log level before serializing log objects.
 				</para>
 			</content>
 		</section>

@@ -2,7 +2,7 @@
 BasicLogging.NET is a simple .NET wrapper that makes it a bit easier to add logging to your application. Currently, it is built on top of the popular [log4net](https://logging.apache.org/log4net/) framework, but it can be extended to support other frameworks, such as [NLog](http://nlog-project.org/).
 
 ##Why use BasicLogging.NET?
-BasicLogging.NET is very simple to use. It automatically adds default context information (method, line, source file) to the log records, so you can track them in your log repositories (you don't have to, though). The library makes it easy to set up other logging context properties that may be needed (such as user, transaction, or session information).
+BasicLogging.NET is lightweight and very simple to use. It automatically adds default context information (method, line, source file) to the log records, so you can track them in your log repositories (you don't have to, though). The library makes it easy to set up other logging context properties that may be needed (such as user, transaction, or session information). It also implements common sense checks, such as checking the log level before serializing log objects.
 
 ##Which logging frameworks does BasicLogging.NET support?
 Currently, BasicLogging.NET only supports log4net, but it can be extended to support other popular frameworks, such as NLog.
