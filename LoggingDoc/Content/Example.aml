@@ -115,7 +115,7 @@
 						{
 							private static ILogger _log = LogManager.GetLogger(typeof(UserController));
 							...
-							public UserInfo Post(UserInfo user)
+							public void Post(UserInfo user)
 							{
 								// In the log4net implementation, TRACE messages are mapped to DEBUG messages.
 								// In addition to the message, the log entry will includ ethe name of this method,
