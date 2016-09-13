@@ -118,7 +118,7 @@
 							public void Post(UserInfo user)
 							{
 								// In the log4net implementation, TRACE messages are mapped to DEBUG messages.
-								// In addition to the message, the log entry will includ ethe name of this method,
+								// In addition to the message, the log entry will include the name of this method,
 								// i.e. 'Post'.
 								_log.Write(LogLevel.Trace, "Started.");
 								
