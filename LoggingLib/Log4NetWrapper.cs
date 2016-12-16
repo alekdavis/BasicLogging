@@ -170,6 +170,45 @@ namespace BasicLogging
 			}
 		}
 
+		/// <summary>
+		/// Determines whether the specified log level is enabled.
+		/// </summary>
+		/// <param name="logLevel">
+		/// The log level.
+		/// </param>
+		/// <returns>
+		///   <c>true</c> if the specified log level is enabled; otherwise, <c>false</c>.
+		/// </returns>
+		public bool IsEnabled
+		(
+			LogLevel logLevel
+		)
+		{
+			if (_log == null)
+				return false;
+
+			switch (logLevel)
+			{
+				case LogLevel.Debug:
+				case LogLevel.Trace:
+					return _log.IsDebugEnabled;
+
+				case LogLevel.Error:
+					return _log.IsErrorEnabled;
+
+				case LogLevel.Fatal:
+					return _log.IsFatalEnabled;
+
+				case LogLevel.Info:
+					return _log.IsInfoEnabled;
+
+				case LogLevel.Warn:
+					return _log.IsWarnEnabled;
+			}
+
+			return false;
+		}
+
 		#pragma warning disable 1573
 		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,string,string)" select="overloads|summary|param|remarks"/> 
 		#pragma warning restore 1573

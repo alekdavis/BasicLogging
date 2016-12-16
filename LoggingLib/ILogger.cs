@@ -36,6 +36,20 @@ namespace BasicLogging
 		/// </remarks>
 		LogCallerContext CallerContext { get; set; }
 
+		/// <summary>
+		/// Determines whether the specified log level is enabled.
+		/// </summary>
+		/// <param name="logLevel">
+		/// The log level.
+		/// </param>
+		/// <returns>
+		///   <c>true</c> if the specified log level is enabled; otherwise, <c>false</c>.
+		/// </returns>
+		bool IsEnabled
+		(
+			LogLevel logLevel
+		);
+
 		/// <overloads>
 		/// Writes a record to the log.
 		/// </overloads>
