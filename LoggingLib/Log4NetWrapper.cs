@@ -115,8 +115,8 @@ namespace BasicLogging
 		{
 			if ((logLevel == LogLevel.Trace && !_log.IsDebugEnabled) ||
 				(logLevel == LogLevel.Debug && !_log.IsDebugEnabled) ||
-				(logLevel == LogLevel.Info && !_log.IsInfoEnabled) ||
-				(logLevel == LogLevel.Warn && !_log.IsWarnEnabled) ||
+				(logLevel == LogLevel.Info  && !_log.IsInfoEnabled)  ||
+				(logLevel == LogLevel.Warn  && !_log.IsWarnEnabled)  ||
 				(logLevel == LogLevel.Error && !_log.IsErrorEnabled) ||
 				(logLevel == LogLevel.Fatal && !_log.IsFatalEnabled))
 				return true;
@@ -268,6 +268,9 @@ namespace BasicLogging
 			Dictionary<string, string> properties
 		)
 		{
+			if (properties == null)
+				return;
+
 			foreach (KeyValuePair<string, string> property in properties)
 			{
 				SetContext(contextType, property.Key, property.Value);
@@ -284,6 +287,9 @@ namespace BasicLogging
 			Dictionary<string, object> properties
 		)
 		{
+			if (properties == null)
+				return;
+
 			foreach (KeyValuePair<string, object> property in properties)
 			{
 				SetContext<string, object>(contextType, property);
@@ -298,6 +304,9 @@ namespace BasicLogging
 			NameValueCollection properties
 		)
 		{
+			if (properties == null)
+				return;
+
 			foreach (string key in properties.Keys)
 			{
 				SetContext<string, object>(contextType, 
@@ -319,6 +328,9 @@ namespace BasicLogging
         {
             if (IgnoreLogLevel(logLevel))
                return;
+
+			if (message == null)
+				return;
 
 			SetCallerContext(callerMemberName, callerFilePath, callerLineNumber.ToString());
 
@@ -352,6 +364,9 @@ namespace BasicLogging
             if (IgnoreLogLevel(logLevel))
                return;
 
+			if (message == null)
+				return;
+
 			Write(logLevel, message.ToString(),
 				callerMemberName, callerFilePath, callerLineNumber);
 		}
@@ -370,6 +385,9 @@ namespace BasicLogging
         {
             if (IgnoreLogLevel(logLevel))
                return;
+
+			if (ex == null)
+				return;
 
 			SetCallerContext(callerMemberName, callerFilePath, callerLineNumber.ToString());
 
@@ -405,20 +423,41 @@ namespace BasicLogging
             if (IgnoreLogLevel(logLevel))
                return;
 
+			if (message == null && ex == null)
+				return;
+
 			SetCallerContext(callerMemberName, callerFilePath, callerLineNumber.ToString());
 
-			if (logLevel == LogLevel.Trace)
-				_log.Debug(message, ex);
-			else if (logLevel == LogLevel.Debug)
-				_log.Debug(message, ex);
-			else if (logLevel == LogLevel.Info)
-				_log.Info(message, ex);
-			else if (logLevel == LogLevel.Warn)
-				_log.Warn(message, ex);
-			else if (logLevel == LogLevel.Error)
-				_log.Error(message, ex);
-			else if (logLevel == LogLevel.Fatal)
-				_log.Fatal(message, ex);
+			if (ex == null)
+			{
+				if (logLevel == LogLevel.Trace)
+					_log.Debug(message);
+				else if (logLevel == LogLevel.Debug)
+					_log.Debug(message);
+				else if (logLevel == LogLevel.Info)
+					_log.Info(message);
+				else if (logLevel == LogLevel.Warn)
+					_log.Warn(message);
+				else if (logLevel == LogLevel.Error)
+					_log.Error(message);
+				else if (logLevel == LogLevel.Fatal)
+					_log.Fatal(message);
+			}
+			else
+			{
+				if (logLevel == LogLevel.Trace)
+					_log.Debug(message, ex);
+				else if (logLevel == LogLevel.Debug)
+					_log.Debug(message, ex);
+				else if (logLevel == LogLevel.Info)
+					_log.Info(message, ex);
+				else if (logLevel == LogLevel.Warn)
+					_log.Warn(message, ex);
+				else if (logLevel == LogLevel.Error)
+					_log.Error(message, ex);
+				else if (logLevel == LogLevel.Fatal)
+					_log.Fatal(message, ex);
+			}
 
 			SetCallerContext(null, null, null);
 		}
@@ -438,6 +477,9 @@ namespace BasicLogging
 		{
             if (IgnoreLogLevel(logLevel))
                return;
+
+			if (message == null && ex == null)
+				return;
 
 			Write(logLevel, message.ToString(), ex,
 				callerMemberName, callerFilePath, callerLineNumber);
