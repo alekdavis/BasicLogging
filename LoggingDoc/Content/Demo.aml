@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="549cae44-8f4d-41d5-8a45-f655f64e97be" revisionNumber="1">
+  <developerSampleDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <!--<autoOutline />-->
+
+      <para>
+				The following example illustrates how to use <token>PRODUCTNAME</token>
+				in a console application.
+			</para>
+    </introduction>
+
+    <section address="ConfigFile">
+      <title>Configuration file</title>
+      <content>
+        <!-- Uncomment this to create a sub-section outline
+        <autoOutline /> -->
+        <para>Demo application configuration file:</para>
+				<code language="xsl" title="App.config" source="..\LoggingSample\app.config"/>
+      </content>
+    </section>
+
+    <section address="SourceFile">
+      <title>Source code</title>
+      <content>
+        <!-- Uncomment this to create a sub-section outline
+        <autoOutline /> -->
+        <para>Demo application source file:</para>
+				<code language="c#" title="Program.cs" source="..\LoggingSample\Program.cs"/>
+      </content>
+    </section>
+
+    <section address="OutputFile">
+      <title>Log file</title>
+      <content>
+        <!-- Uncomment this to create a sub-section outline
+        <autoOutline /> -->
+        <para>Demo log file:</para>
+				<code language="none" title="LoggingSample.log" source="..\LoggingSample\LoggingSample.log"/>
+      </content>
+    </section>
+
+    <relatedTopics>
+			<link xlink:href="f1f4cd46-0e88-4f93-ac72-d53425e2b411" />
+    </relatedTopics>
+  </developerSampleDocument>
+</topic>

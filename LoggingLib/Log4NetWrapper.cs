@@ -146,15 +146,9 @@ namespace BasicLogging
 			}
 		}
 
-		/// <summary>
-		/// Determines whether the specified log level is enabled.
-		/// </summary>
-		/// <param name="logLevel">
-		/// The log level.
-		/// </param>
-		/// <returns>
-		///   <c>true</c> if the specified log level is enabled; otherwise, <c>false</c>.
-		/// </returns>
+		#pragma warning disable 1573
+		/// <inheritdoc /> 
+		#pragma warning restore 1573
 		public override bool IsEnabled
 		(
 			LogLevel logLevel
@@ -186,7 +180,7 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,string,object)" select="summary|param|remarks"/> 
+		/// <inheritdoc /> 
 		#pragma warning restore 1573
 		public override void SetContext
 		(
@@ -212,7 +206,10 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,string,string,string,int)" select="summary|param|remarks"/> 
+		/// <inheritdoc /> 
+		/// <overloads>
+		/// <inheritdoc /> 
+		/// </overloads>
 		#pragma warning restore 1573
 		public override void Write
 		(
@@ -251,7 +248,7 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,object,string,string,int)" select="summary|param|remarks"/> 
+		/// <inheritdoc /> 
 		#pragma warning restore 1573
         public override void Write
 		(
@@ -276,7 +273,7 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,Exception,string,string,int)" select="summary|param|remarks"/> 
+		/// <inheritdoc /> 
 		#pragma warning restore 1573
         public override void Write
 		(
@@ -315,7 +312,7 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,string,Exception,string,string,int)" select="summary|param|remarks"/> 
+		/// <inheritdoc /> 
 		#pragma warning restore 1573
 		public override void Write
 		(
@@ -373,10 +370,7 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,object,Exception,string,string,int)" select="summary|param|remarks"/> 
-		/// <overloads>
-		/// Writes a record to the log.
-		/// </overloads>
+		/// <inheritdoc /> 
 		#pragma warning restore 1573
 		public override void Write
 		(

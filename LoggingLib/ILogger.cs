@@ -109,16 +109,16 @@ namespace BasicLogging
 
 		#pragma warning disable 1573
 		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
-		/// <summary>
-		/// Converts the specified <paramref name="message"/> to a string
-		/// and writes it along with an exception to the log as a debug message.
-		/// </summary>
 		/// <overloads>
 		/// Writes a debug record to the log.
 		/// These methods are simple shortcuts to the 
 		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
 		/// with the <see cref="BasicLogging.LogLevel.Debug"/> flag.
 		/// </overloads>
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as a debug message.
+		/// </summary>
 		#pragma warning restore 1573
 		void Debug
 		(
@@ -682,8 +682,7 @@ namespace BasicLogging
 		#pragma warning disable 1573 
 		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
 		/// <summary>
-		/// Converts the specified <paramref name="message"/> to a string
-		/// and writes it to the log.
+		/// Converts the message object to a string and writes it to the log.
 		/// </summary>
 		/// <param name="message">
 		/// Object to be converted to a log message.
@@ -747,8 +746,7 @@ namespace BasicLogging
 		#pragma warning disable 1573 
 		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/> 
 		/// <summary>
-		/// Converts the specified <paramref name="message"/> to a string
-		/// and writes it along with an exception to the log.
+		/// Converts the message object to a string and writes it along with an exception to the log.
 		/// </summary>
 		void Write
 		(
