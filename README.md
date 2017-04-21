@@ -1,28 +1,28 @@
 # BasicLogging.NET
 BasicLogging.NET is a simple .NET wrapper that makes it a bit easier to add logging to your application. Currently, it is built on top of the popular [log4net](https://logging.apache.org/log4net/) framework, but it can be extended to support other frameworks, such as [NLog](http://nlog-project.org/).
 
-##Why use BasicLogging.NET?
+## Why use BasicLogging.NET?
 BasicLogging.NET is lightweight and very simple to use. It automatically adds default context information (method, line, source file) to the log records, so you can track them in your log repositories (you don't have to, though). The library makes it easy to set up other logging context properties that may be needed (such as user, transaction, or session information). It also implements common sense checks, such as checking the log level before serializing log objects.
 
-##Which logging frameworks does BasicLogging.NET support?
+## Which logging frameworks does BasicLogging.NET support?
 Currently, BasicLogging.NET only supports log4net, but it can be extended to support other popular frameworks, such as NLog.
 
-##How is BasicLogging.NET similar to log4net?
+## How is BasicLogging.NET similar to log4net?
 BasicLogging.NET, is a simple wrapper for log4net (other frameworks may be supported in future). It has a familiar logging workflow and supports the same logging configuration options as an out-of-the-box log4net library (including custom formatters, etc).
 
-##How is BasicLogging.NET different from log4net?
+## How is BasicLogging.NET different from log4net?
 BasicLogging.NET offers a somewhat simpler logging interface with just a couple of methods and enumeration types. It also exposes additional logging context information, such as the immediate method writing a log record, source code path, and line number of the log writer. 
 
-##Why doesn't BasicLogging.NET support log4net's format messages, like DebugFormat?
+## Why doesn't BasicLogging.NET support log4net's format messages, like DebugFormat?
 Instead of optional string formatting parameters used by log4net's format functions (such as DebugFormat, InfoFormat, etc), log writing methods exposed by BasicLogging.NET reserve optional parameters to capture caller context: name of the method making the call, source file and line number. This information can be added to the log records via the `%property{callerMemberName}`, `%property{callerLineNumber}`, and `%property{callerFilePath}` placeholders without any programming on your part (you can customize and completely turn these options off via the `CallerContext` property). For additional information, see [CallerMemberName](https://msdn.microsoft.com/en-us/library/hh551816), [CallerLineNumber](https://msdn.microsoft.com/en-us/library/hh551811), and [CallerFilePath](https://msdn.microsoft.com/en-us/library/hh551818).
 
-##Where is the BasicLogging.NET NuGet package?
+## Where is the BasicLogging.NET NuGet package?
 Here it is: [https://www.nuget.org/packages/BasicLogging/](https://www.nuget.org/packages/BasicLogging/).
 
-##Where is the BasicLogging.NET documentation file?
+## Where is the BasicLogging.NET documentation file?
 You can find the help file at the [latest release downloads](../../releases).
 
-##Example
+## Example
 The following example illustrates the basic use of BasicLogging.NET. 
 
 Assume that we have an MVC application that, in addition to standard info (timestamp, thread ID, message, etc), must write the following to the logs: 
