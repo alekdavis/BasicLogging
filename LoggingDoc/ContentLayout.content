@@ -1,17 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="f0cc3a48-77b2-4d84-960f-4e74e59ef640" visible="True" isDefault="true" isSelected="true" apiParentMode="InsertAfter" title="Introduction">
+  <Topic id="f0cc3a48-77b2-4d84-960f-4e74e59ef640" visible="True" isDefault="true" apiParentMode="InsertAfter" title="Introduction">
     <HelpKeywords>
       <HelpKeyword index="K" term="welcome" />
       <HelpKeyword index="K" term="introduction" />
       <HelpKeyword index="K" term="FAQs" />
     </HelpKeywords>
   </Topic>
-  <Topic id="f1f4cd46-0e88-4f93-ac72-d53425e2b411" visible="True" title="Example">
+  <Topic id="f1f4cd46-0e88-4f93-ac72-d53425e2b411" visible="True" isSelected="true" title="Example">
     <HelpKeywords>
       <HelpKeyword index="K" term="sample" />
       <HelpKeyword index="K" term="example" />
       <HelpKeyword index="K" term="code" />
     </HelpKeywords>
+    <Topic id="549cae44-8f4d-41d5-8a45-f655f64e97be" visible="True" title="Demo">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="sample" />
+        <HelpKeyword index="K" term="demo" />
+        <HelpKeyword index="K" term="code" />
+      </HelpKeywords>
+    </Topic>
   </Topic>
 </Topics>

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BasicLogging.NET Class Library")]
-[assembly: AssemblyDescription("Simple log wrapper for log4net (and possibly other logging libraries).")]
+[assembly: AssemblyTitle("TestBasicLogging")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Alek Davis")]
-[assembly: AssemblyProduct("BasicLogging.NET")]
-[assembly: AssemblyCopyright("Copyright (C) 2016-2017 Alek Davis")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("TestBasicLogging")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7a597a0c-ab38-4abf-b5c0-08f584410402")]
+[assembly: Guid("11f69792-83f4-44de-b01b-1822c042c761")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.0.0")]
-[assembly: AssemblyFileVersion("1.2.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

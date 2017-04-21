@@ -30,40 +30,16 @@ namespace BasicLogging
 	/// as part of the caller context info.
 	/// To capture full name or make other customizations of the
 	/// caller context configuration,
-	/// set proper <see cref="CallerContext"/>
+	/// set proper <see cref="BasicLogging.ILogger.CallerContext"/>
 	/// flags. 
 	/// </para>
 	/// </remarks>
-	public sealed class Log4NetWrapper: ILogger
+	public sealed class Log4NetWrapper: LogWrapper
 	{	
 		/// <summary>
 		/// Logger instance.
 		/// </summary>
         private log4net.ILog _log = null;
-
-		/// <summary>
-		/// Caller context to be implicitly captured.
-		/// </summary>
-		private LogCallerContext _callerContext = 
-			LogCallerContext.LineNumber | 
-			LogCallerContext.MethodName | 
-			LogCallerContext.SourceFileName;
-
-		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.CallerContext" select="summary|value"/> 
-		#pragma warning restore 1573
-		public LogCallerContext CallerContext 
-		{  
-			get 
-			{
-				return _callerContext;
-			}
-			
-			set
-			{
-				_callerContext = value;
-			}
-		}
 
 		/// <summary>
 		/// Initializes a new instance of the 
@@ -108,7 +84,7 @@ namespace BasicLogging
 		/// <c>True</c> if the log record must not be written to the log;
 		/// otherwise, false.
 		/// </returns>
-		private bool IgnoreLogLevel
+		protected override bool IgnoreLogLevel
 		(
 			LogLevel logLevel
 		)
@@ -179,7 +155,7 @@ namespace BasicLogging
 		/// <returns>
 		///   <c>true</c> if the specified log level is enabled; otherwise, <c>false</c>.
 		/// </returns>
-		public bool IsEnabled
+		public override bool IsEnabled
 		(
 			LogLevel logLevel
 		)
@@ -210,22 +186,9 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,string,string)" select="overloads|summary|param|remarks"/> 
-		#pragma warning restore 1573
-		public void SetContext
-		(
-			LogContextType	contextType,
-			string			name,
-			object			value
-		)
-		{
-			SetContext(contextType, name, value.ToString());
-		}
-
-		#pragma warning disable 1573
 		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,string,object)" select="summary|param|remarks"/> 
 		#pragma warning restore 1573
-		public void SetContext
+		public override void SetContext
 		(
 			LogContextType	contextType,
 			string			name,
@@ -249,81 +212,18 @@ namespace BasicLogging
 		}
 
 		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.SetContext{TKey,TValue}(LogContextType,KeyValuePair{TKey,TValue})" select="summary|typeparam|param|remarks"/> 
-		public void SetContext<TKey, TValue>
-		(
-			LogContextType	contextType,
-			KeyValuePair<TKey, TValue> property
-		)
-		{
-			SetContext(contextType, property.Key.ToString(), property.Value.ToString());
-		}
+		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,string,string,string,int)" select="summary|param|remarks"/> 
 		#pragma warning restore 1573
-
-		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,Dictionary{string,string})" select="summary|param|remarks"/> 
-		public void SetContext
-		(
-			LogContextType contextType,
-			Dictionary<string, string> properties
-		)
-		{
-			if (properties == null)
-				return;
-
-			foreach (KeyValuePair<string, string> property in properties)
-			{
-				SetContext(contextType, property.Key, property.Value);
-			}
-		}
-		#pragma warning restore 1573
-
-		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,Dictionary{string,object})" select="overloads|summary|param|remarks"/> 
-		#pragma warning restore 1573
-		public void SetContext
-		(
-			LogContextType contextType,
-			Dictionary<string, object> properties
-		)
-		{
-			if (properties == null)
-				return;
-
-			foreach (KeyValuePair<string, object> property in properties)
-			{
-				SetContext<string, object>(contextType, property);
-			}
-		}
-		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.SetContext(LogContextType,NameValueCollection)" select="overloads|summary|param|remarks"/> 
-		#pragma warning restore 1573
-		public void SetContext
-		(
-			LogContextType contextType,
-			NameValueCollection properties
-		)
-		{
-			if (properties == null)
-				return;
-
-			foreach (string key in properties.Keys)
-			{
-				SetContext<string, object>(contextType, 
-					new KeyValuePair<string, object>(key, properties[key]));
-			}
-		}
-
-		#pragma warning disable 1573
-		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,string,string,string,int)" select="overloads|summary|param|remarks"/> 
-		#pragma warning restore 1573
-		public void Write
+		public override void Write
 		(
 			LogLevel	logLevel, 
 			string		message,
-			[CallerMemberName]	string callerMemberName = "", 
-			[CallerFilePath]	string callerFilePath	= "", 
-			[CallerLineNumber]	int callerLineNumber	= 0
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
 		)
         {
             if (IgnoreLogLevel(logLevel))
@@ -353,13 +253,17 @@ namespace BasicLogging
 		#pragma warning disable 1573
 		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,object,string,string,int)" select="summary|param|remarks"/> 
 		#pragma warning restore 1573
-        public void Write
+        public override void Write
 		(
 			LogLevel	logLevel, 
 			object		message, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0)
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		)
         {
             if (IgnoreLogLevel(logLevel))
                return;
@@ -374,13 +278,16 @@ namespace BasicLogging
 		#pragma warning disable 1573
 		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,Exception,string,string,int)" select="summary|param|remarks"/> 
 		#pragma warning restore 1573
-        public void Write
+        public override void Write
 		(
 			LogLevel	logLevel, 
 			Exception	ex, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
 		)
         {
             if (IgnoreLogLevel(logLevel))
@@ -410,14 +317,17 @@ namespace BasicLogging
 		#pragma warning disable 1573
 		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,string,Exception,string,string,int)" select="summary|param|remarks"/> 
 		#pragma warning restore 1573
-		public void Write
+		public override void Write
 		(
 			LogLevel	logLevel, 
 			string		message, 
 			Exception	ex, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
 		)
 		{
             if (IgnoreLogLevel(logLevel))
@@ -464,15 +374,21 @@ namespace BasicLogging
 
 		#pragma warning disable 1573
 		/// <inheritdoc cref="BasicLogging.ILogger.Write(LogLevel,object,Exception,string,string,int)" select="summary|param|remarks"/> 
+		/// <overloads>
+		/// Writes a record to the log.
+		/// </overloads>
 		#pragma warning restore 1573
-		public void Write
+		public override void Write
 		(
 			LogLevel	logLevel, 
 			object		message, 
 			Exception	ex, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]	
+			string		callerMemberName	= "", 
+			[CallerFilePath]	
+			string		callerFilePath		= "", 
+			[CallerLineNumber]	
+			int			callerLineNumber	= 0
 		)
 		{
             if (IgnoreLogLevel(logLevel))

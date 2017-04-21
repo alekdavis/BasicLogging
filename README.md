@@ -143,3 +143,4 @@ namespace BasicLoggingDemo
 }
 
 ```
+You can find more detailed examples in the sample project that is part of the solution.

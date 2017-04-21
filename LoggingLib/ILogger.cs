@@ -16,7 +16,8 @@ namespace BasicLogging
 		/// <summary>
 		/// Gets or sets the details about the caller context 
 		/// (such as calling method or line number)
-		/// that must be captured in the logs.
+		/// that will be exposed to the logging provider
+		/// and may be written to the logs.
 		/// </summary>
 		/// <value>
 		/// Details about the caller context that must be captured.
@@ -36,11 +37,581 @@ namespace BasicLogging
 		/// </remarks>
 		LogCallerContext CallerContext { get; set; }
 
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes a debug text message to the log.
+		/// </summary>
+		#pragma warning restore 1573		
+		void Debug
+		(
+			string	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it to the log as a debug message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Debug
+		(
+			object	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an exception to the log as a debug message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Debug
+		(
+			Exception	ex, 
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/>
+		/// <summary>
+		/// Writes text and exception to the log as a debug message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Debug
+		(
+			string		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as a debug message.
+		/// </summary>
+		/// <overloads>
+		/// Writes a debug record to the log.
+		/// These methods are simple shortcuts to the 
+		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
+		/// with the <see cref="BasicLogging.LogLevel.Debug"/> flag.
+		/// </overloads>
+		#pragma warning restore 1573
+		void Debug
+		(
+			object		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes a non-fatal error text message to the log.
+		/// </summary>
+		#pragma warning restore 1573
+		void Error
+		(
+			string	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it to the log as a non-fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Error
+		(
+			object	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an exception to the log as a non-fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Error
+		(
+			Exception	ex, 
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes text and exception to the log as a non-fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Error
+		(
+			string		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
+		/// <overloads>
+		/// Writes a non-fatal error record to the log.
+		/// These methods are simple shortcuts to the 
+		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
+		/// with the <see cref="BasicLogging.LogLevel.Error"/> flag.
+		/// </overloads>
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as a non-fatal error message.
+		/// </summary>	
+		#pragma warning restore 1573
+		void Error
+		(
+			object		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes a fatal error text message to the log.
+		/// </summary>
+		#pragma warning restore 1573
+		void Fatal
+		(
+			string	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it to the log as a fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Fatal
+		(
+			object	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an exception to the log as a fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Fatal
+		(
+			Exception	ex, 
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes text and exception to the log as a fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Fatal
+		(
+			string		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
+		/// <overloads>
+		/// Writes a fatal error record to the log.
+		/// These methods are simple shortcuts to the 
+		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
+		/// with the <see cref="BasicLogging.LogLevel.Fatal"/> flag.
+		/// </overloads>
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as a fatal error message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Fatal
+		(
+			object		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an informational text message to the log.
+		/// </summary>
+		#pragma warning restore 1573
+		void Info
+		(
+			string	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it to the log as an informational message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Info
+		(
+			object	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an exception to the log as an informational message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Info
+		(
+			Exception	ex, 
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes text and exception to the log as an informational message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Info
+		(
+			string		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
+		/// <overloads>
+		/// Writes an informational record to the log.
+		/// These methods are simple shortcuts to the 
+		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
+		/// with the <see cref="BasicLogging.LogLevel.Info"/> flag.
+		/// </overloads>
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as an informational message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Info
+		(
+			object		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes a trace text message to the log.
+		/// </summary>
+		#pragma warning restore 1573
+		void Trace
+		(
+			string	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it to the log as a trace message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Trace
+		(
+			object	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an exception to the log as a trace message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Trace
+		(
+			Exception	ex, 
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes text and exception to the log as a trace message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Trace
+		(
+			string		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
+		/// <overloads>
+		/// Writes a trace record to the log.
+		/// These methods are simple shortcuts to the 
+		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
+		/// with the <see cref="BasicLogging.LogLevel.Trace"/> flag.
+		/// </overloads>
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as a trace message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Trace
+		(
+			object		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes a warning text message to the log.
+		/// </summary>
+		#pragma warning restore 1573
+		void Warn
+		(
+			string	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it to the log as a warning message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Warn
+		(
+			object	message, 
+			[CallerMemberName]
+			string	callerMemberName	= "", 
+			[CallerFilePath]
+			string	callerFilePath		= "", 
+			[CallerLineNumber]
+			int		callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes an exception to the log as a warning message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Warn
+		(
+			Exception	ex, 
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,string,Exception,string,string,int)" select="param|remarks"/> 
+		/// <summary>
+		/// Writes text and exception to the log as a warning message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Warn
+		(
+			string		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
+		#pragma warning disable 1573
+		/// <inheritdoc cref="Write(LogLevel,object,Exception,string,string,int)" select="param|remarks"/> 
+		/// <overloads>
+		/// Writes a warning record to the log.
+		/// These methods are simple shortcuts to the 
+		/// <see cref="O:BasicLogging.ILogger.Write"/> method called
+		/// with the <see cref="BasicLogging.LogLevel.Warn"/> flag.
+		/// </overloads>
+		/// <summary>
+		/// Converts the specified <paramref name="message"/> to a string
+		/// and writes it along with an exception to the log as a warning message.
+		/// </summary>
+		#pragma warning restore 1573
+		void Warn
+		(
+			object		message, 
+			Exception	ex,
+			[CallerMemberName]
+			string		callerMemberName	= "", 
+			[CallerFilePath]
+			string		callerFilePath		= "", 
+			[CallerLineNumber]
+			int			callerLineNumber	= 0
+		);
+
 		/// <summary>
 		/// Determines whether the specified log level is enabled.
 		/// </summary>
 		/// <param name="logLevel">
-		/// The log level.
+		/// The log level to be checked.
 		/// </param>
 		/// <returns>
 		///   <c>true</c> if the specified log level is enabled; otherwise, <c>false</c>.
@@ -100,9 +671,12 @@ namespace BasicLogging
 		(
 			LogLevel	logLevel, 
 			string		message,
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]	
+			string		callerMemberName	= "", 
+			[CallerFilePath]	
+			string		callerFilePath		= "", 
+			[CallerLineNumber]	
+			int			callerLineNumber	= 0
 		);
 
 		#pragma warning disable 1573 
@@ -118,9 +692,12 @@ namespace BasicLogging
 		(
 			LogLevel	logLevel, 
 			object		message, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]	
+			string		callerMemberName	= "", 
+			[CallerFilePath]	
+			string		callerFilePath		= "", 
+			[CallerLineNumber]	
+			int			callerLineNumber	= 0
 		);
 		#pragma warning restore 1573
         
@@ -136,16 +713,19 @@ namespace BasicLogging
 		(
 			LogLevel	logLevel, 
 			Exception	ex, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]	
+			string		callerMemberName	= "", 
+			[CallerFilePath]	
+			string		callerFilePath		= "", 
+			[CallerLineNumber]	
+			int			callerLineNumber	= 0
 		);
 		#pragma warning restore 1573
 		
 		#pragma warning disable 1573 
 		/// <inheritdoc cref="Write(LogLevel,string,string,string,int)" select="param|remarks"/> 
 		/// <summary>
-		/// Writes a text message and an exception to the log.
+		/// Writes text and exception to the log.
 		/// </summary>
 		/// <param name="ex">
 		/// Error information.
@@ -155,9 +735,12 @@ namespace BasicLogging
 			LogLevel	logLevel, 
 			string		message, 
 			Exception	ex, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]	
+			string		callerMemberName	= "", 
+			[CallerFilePath]	
+			string		callerFilePath		= "", 
+			[CallerLineNumber]	
+			int			callerLineNumber	= 0
 		);
 		#pragma warning restore 1573
 		
@@ -172,9 +755,12 @@ namespace BasicLogging
 			LogLevel	logLevel, 
 			object		message, 
 			Exception	ex, 
-			[CallerMemberName]	string	callerMemberName	= "", 
-			[CallerFilePath]	string	callerFilePath		= "", 
-			[CallerLineNumber]	int		callerLineNumber	= 0
+			[CallerMemberName]	
+			string		callerMemberName	= "", 
+			[CallerFilePath]	
+			string		callerFilePath		= "", 
+			[CallerLineNumber]	
+			int			callerLineNumber	= 0
 		);
 		#pragma warning restore 1573
 

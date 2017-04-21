@@ -40,7 +40,7 @@
     <NamespaceGrouping>True</NamespaceGrouping>
     <SyntaxFilters>C#</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
-    <RootNamespaceTitle>Class Library</RootNamespaceTitle>
+    <RootNamespaceTitle>Library</RootNamespaceTitle>
     <RootNamespaceContainer>True</RootNamespaceContainer>
     <PresentationStyle>VS2010</PresentationStyle>
     <Preliminary>False</Preliminary>
@@ -154,6 +154,7 @@
     <Folder Include="Media" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Demo.aml" />
     <None Include="Content\Example.aml" />
     <None Include="Content\Introduction.aml" />
   </ItemGroup>

@@ -8,12 +8,13 @@ using System.Runtime.CompilerServices;
 namespace BasicLogging
 {
 	/// <summary>
-	/// Implements helper methods useful for getting context data.
+	/// Implements helper methods useful for getting caller context information.
 	/// </summary>
 	public sealed class LogContext
 	{
 		/// <summary>
-		/// Prevents a default instance of the <see cref="LogContext"/> class from being created.
+		/// Prevents a default instance of the <see cref="LogContext"/> 
+		/// class from being created.
 		/// </summary>
 		private LogContext()
 		{ 
@@ -30,7 +31,8 @@ namespace BasicLogging
 		/// </returns>
 		public static string GetMethodName
 		(
-			[CallerMemberName] string callerMemberName = null
+			[CallerMemberName] 
+			string callerMemberName = null
 		)
 		{
 			return callerMemberName;
@@ -47,7 +49,8 @@ namespace BasicLogging
 		/// </returns>
 		public static string GetFilePath
 		(
-			[CallerFilePath] string callerFilePath = null
+			[CallerFilePath] 
+			string callerFilePath = null
 		)
 		{
 			return callerFilePath;
@@ -64,7 +67,8 @@ namespace BasicLogging
 		/// </returns>
 		public static int GetLineNumber
 		(
-			[CallerLineNumber]	int	callerLineNumber = 0
+			[CallerLineNumber]
+			int	callerLineNumber = 0
 		)
 		{
 			return callerLineNumber;

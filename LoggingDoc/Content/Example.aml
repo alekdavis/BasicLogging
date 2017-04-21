@@ -4,32 +4,12 @@
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <!--
-    <summary>
-      <para>Optional summary abstract</para>
-    </summary>
-    -->
-
     <introduction>
-      <!-- Uncomment this to generate an outline of the section and sub-section
-           titles.  Specify a numeric value as the inner text to limit it to
-           a specific number of sub-topics when creating the outline.  Specify
-           zero (0) to limit it to top-level sections only.  -->
-      <!-- <autoOutline /> -->
-
       <para>
 			The following example illustrates the use of <token>PRODUCTNAME</token>.
 			</para>
     </introduction>
 
-    <!-- <procedure>Optional procedures.  See How To document for procedure layout example.</procedure> -->
-    <!-- <requirements>Optional requirements section</requirements> -->
-    <!-- <demonstrates>Optional info about what is demonstrated</demonstrates> -->
-    <!-- <codeExample>Optional code example</codeExample> -->
-
-    <!-- Add one or more top-level section elements.  These are collapsible.
-         If using <autoOutline />, add an address attribute to identify it
-         and specify a title so that it can be jumped to with a hyperlink. -->
 		<section address="Sample">
 			<title>Example</title>
 			<content>
@@ -189,6 +169,7 @@
 		</section>
 
     <relatedTopics>
+			<link xlink:href="549cae44-8f4d-41d5-8a45-f655f64e97be" />
 			<link xlink:href="f0cc3a48-77b2-4d84-960f-4e74e59ef640" />
 			<codeEntityReference>R:Project_BasicLogging</codeEntityReference>
 			<externalLink>
