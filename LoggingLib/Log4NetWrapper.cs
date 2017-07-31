@@ -208,6 +208,68 @@ namespace BasicLogging
 		#pragma warning disable 1573
 		/// <inheritdoc /> 
 		/// <overloads>
+		/// <inheritdoc />
+		/// </overloads>
+		#pragma warning restore 1573
+		public override string GetContext
+		(
+			LogContextType	contextType,
+			string			name
+		)
+		{
+			if (name == null)
+				return null;
+
+			switch (contextType)
+			{
+				case LogContextType.Global:
+					return log4net.GlobalContext.Properties[name] == null ? 
+						null : log4net.GlobalContext.Properties[name].ToString();
+
+				case LogContextType.LogicalThread:
+					return log4net.LogicalThreadContext.Properties[name] == null ? 
+						null : log4net.LogicalThreadContext.Properties[name].ToString();
+
+				case LogContextType.Thread:
+					return log4net.ThreadContext.Properties[name] == null ? 
+						null : log4net.ThreadContext.Properties[name].ToString();
+			}
+
+			return null;
+		}
+
+		#pragma warning disable 1573
+		/// <inheritdoc /> 
+		/// <remarks>
+		/// The context scopes will be probed in the following order:
+		/// (1) <see cref="BasicLogging.LogContextType.LogicalThread"/>,
+		/// (2) <see cref="BasicLogging.LogContextType.Thread"/>, and
+		/// (3)  <see cref="BasicLogging.LogContextType.Global"/>.
+		/// </remarks>
+		#pragma warning restore 1573
+		public override string GetContext
+		(
+			string name
+		)
+		{
+			if (name == null)
+				return null;
+
+			if (log4net.LogicalThreadContext.Properties[name] != null) 
+				return log4net.LogicalThreadContext.Properties[name].ToString();
+
+			if (log4net.ThreadContext.Properties[name] != null)
+				return log4net.ThreadContext.Properties[name].ToString();
+
+			if (log4net.GlobalContext.Properties[name] != null)
+				return log4net.GlobalContext.Properties[name].ToString();
+
+			return null;
+		}
+
+		#pragma warning disable 1573
+		/// <inheritdoc /> 
+		/// <overloads>
 		/// <inheritdoc /> 
 		/// </overloads>
 		#pragma warning restore 1573

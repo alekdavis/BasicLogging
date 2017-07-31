@@ -51,6 +51,9 @@ namespace TestBasicLogging
 			// Test multi-threaded logging.
 			DoTheOther();
 
+			// Test the context getter methods.
+			TestContextGet("transaction");
+
 			// _log.Write(LogLevel.Trace, "Ended.");
 			_log.Trace("Ended.");
 		}
@@ -177,6 +180,36 @@ namespace TestBasicLogging
 			throw new InvalidOperationException(
 				"Invalid operation occurred.",
 				new ApplicationException("Custom inner exception."));
+		}
+
+		/// <summary>
+		/// Tests the context get methods.
+		/// </summary>
+		/// <param name="name">
+		/// Name of the context property.
+		/// </param>
+		static void TestContextGet
+		(
+			string name
+		)
+		{
+			string guid;
+			
+			guid = _log.GetContext(LogContextType.LogicalThread, name);
+
+			_log.Info("Property '" + name + "' from logical thread: " + guid);
+			
+			guid = _log.GetContext(LogContextType.Thread, name);
+
+			_log.Info("Property '" + name + "' from physical thread: " + guid);
+			
+			guid = _log.GetContext(LogContextType.Global, name);
+
+			_log.Info("Property '" + name + "' from global context: " + guid);
+			
+			guid = _log.GetContext(name);
+
+			_log.Info("Property '" + name + "' from unspecified context: " + guid);
 		}
 	}
 }

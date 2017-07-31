@@ -866,5 +866,56 @@ namespace BasicLogging
 			NameValueCollection properties
 		);
 		#pragma warning restore 1573
+
+		/// <summary>
+		/// Gets the value of the custom context property 
+		/// defined in the specified context scope.
+		/// </summary>
+		/// <overloads>
+		/// Gets the value of a custom context property.
+		/// </overloads>
+		/// <param name="contextType">
+		/// Property accessibility scope.
+		/// </param>
+		/// <param name="name">
+		/// Property name.
+		/// </param>
+		/// <returns>
+		/// Property value.
+		/// </returns>
+		string GetContext
+		(
+			LogContextType contextType,
+			string name
+		);
+
+		#pragma warning disable 1573 
+		/// <inheritdoc cref="GetContext(LogContextType,string)"/>
+		string GetContext
+		(
+			LogContextType contextType,
+			object name
+		);
+		#pragma warning restore 1573
+
+		#pragma warning disable 1573 
+		/// <inheritdoc cref="GetContext(string)"/>
+		string GetContext
+		(
+			object name
+		);
+		#pragma warning restore 1573
+
+		#pragma warning disable 1573 
+		/// <inheritdoc cref="GetContext(LogContextType,string)" select="param|returns"/>
+		/// <summary>
+		/// Gets the value of the custom context property 
+		/// defined in any context scope.
+		/// </summary>
+		string GetContext
+		(
+			string name
+		);
+		#pragma warning restore 1573
 	}
 }

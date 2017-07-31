@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes></releaseNotes>
 		<projectUrl>https://github.com/alekdavis/BasicLogging</projectUrl>
     <copyright>Copyright (C) 2016-2017 Alek Davis</copyright>
     <tags>logging log4net</tags>
